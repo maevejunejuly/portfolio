@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fdfdfc;
+  --fg: #14130f;
+  --surface: #ece9e2;
+  --line: rgba(20, 19, 15, 0.16);
+  --line2: rgba(20, 19, 15, 0.18);
+  --inv-bg: #14130f;
+  --inv-fg: #fdfdfc;
+
+  /* --font-display / -body / -label / -hand / -telugu / -mono are injected on
+     <html> by next/font in app/layout.tsx. */
+
+  --ganula-ink: #221e17;
+  --ganula-paper: #fffdf6;
+  --ganula-muted: #8a8172;
+  --ganula-rule: #c3b89f;
+  --ganula-gold: #dfa02a;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: #c9f24d;
+  color: #14130f;
+}
+
+@keyframes ganula-sweep {
+  from { background-position: 200% 0; }
+  to   { background-position: -60% 0; }
+}
+
+@keyframes caravan-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
