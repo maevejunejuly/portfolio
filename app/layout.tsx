@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
+import localFont from "next/font/local";
 import {
   Archivo_Black,
-  Space_Grotesk,
-  JetBrains_Mono,
-  Permanent_Marker,
   Noto_Sans_Telugu,
   DM_Mono,
   Bricolage_Grotesque,
+  Roboto,
 } from "next/font/google";
 import "./globals.css";
 import Wordmark from "./components/Wordmark";
@@ -18,24 +18,18 @@ const display = Archivo_Black({
   display: "swap",
 });
 
-const body = Space_Grotesk({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
+const scoutie = localFont({
+  src: [
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-Light.ttf", weight: "300", style: "normal" },
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-LightItalic.ttf", weight: "300", style: "italic" },
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-Italic.ttf", weight: "400", style: "italic" },
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-Bold.ttf", weight: "700", style: "normal" },
+    { path: "../public/fonts/Scoutie_Sans/static/ScoutieSans-BoldItalic.ttf", weight: "700", style: "italic" },
+  ],
   variable: "--font-body",
-  display: "swap",
-});
-
-const label = JetBrains_Mono({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-label",
-  display: "swap",
-});
-
-const hand = Permanent_Marker({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-hand",
   display: "swap",
 });
 
@@ -53,6 +47,13 @@ const telugu = Noto_Sans_Telugu({
   display: "swap",
 });
 
+const roboto = Roboto({
+  weight: ["400", "500"],
+  subsets: ["latin"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
 const mono = DM_Mono({
   weight: ["400", "500"],
   subsets: ["latin"],
@@ -61,9 +62,7 @@ const mono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maeve Chen — Portfolio",
-  description:
-    "Maeve Chen — software engineer and video creator. Engineering case studies, creative work, and writing.",
+  title: "Maeve Chen",
 };
 
 export default function RootLayout({
@@ -72,11 +71,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${label.variable} ${hand.variable} ${bricolage.variable} ${telugu.variable} ${mono.variable}`}
+      className={`${display.variable} ${scoutie.variable} ${bricolage.variable} ${telugu.variable} ${mono.variable} ${roboto.variable}`}
     >
       <body className="font-body">
-        <Wordmark />
-        {children}
+        <div className="isolate">
+          <Suspense fallback={null}>
+            <Wordmark />
+          </Suspense>
+          {children}
+        </div>
       </body>
     </html>
   );

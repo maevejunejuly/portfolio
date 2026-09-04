@@ -1,43 +1,21 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import CatalogClient from "./CatalogClient";
 import Footer from "../components/Footer";
-import Ruler from "../components/Ruler";
+import { getProjects } from "../lib/projects";
 
-export const metadata: Metadata = {
-  title: "Catalog — Maeve Chen",
-  description:
-    "Every project — engineering and creative — filterable by tag, in three ways of looking at it.",
-};
+// Must be a literal: Next parses this statically. Keep in step with db.ts.
+export const revalidate = 60;
 
-export default function Catalog() {
+export default async function Catalog() {
+  const projects = await getProjects();
   return (
-    <main className="mx-auto max-w-shell px-4 pb-10 sm:px-7">
-      <div className="flex items-baseline justify-between font-label text-label uppercase opacity-45">
-        <span>Catalog</span>
-        <span>[FIG. 3] Index / Directory / Board</span>
-      </div>
-
-      <h1 className="mt-4 font-display text-[clamp(38px,7vw,86px)] uppercase leading-[0.88] tracking-wordmark">
-        Everything
-      </h1>
-      <p className="mb-6 mt-3 max-w-prose text-body-lg opacity-70 [text-wrap:pretty]">
-        Engineering and creative work in one place. Filter by tag, sort it, or drag it
-        around — three ways of looking at the same set.
-      </p>
-
-      <Suspense
-        fallback={
-          <p className="py-20 text-center font-label text-label uppercase opacity-40">
-            Loading catalog…
-          </p>
-        }
-      >
-        <CatalogClient />
+    <main className="mx-auto max-w-[1760px] px-4 pb-40 sm:px-7 sm:pb-32">
+      <Suspense fallback={null}>
+        <CatalogClient projects={projects} />
       </Suspense>
-
-      <Ruler className="mt-6 text-fg opacity-60" />
-      <Footer />
+      <div data-chrome className="overlay-invert chrome fixed inset-x-0 bottom-0 z-40 mx-auto max-w-[1760px] px-4 sm:px-7">
+        <Footer />
+      </div>
     </main>
   );
 }

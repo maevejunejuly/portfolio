@@ -43,3 +43,5 @@ next-env.d.ts
 # source assets — originals live outside git (578MB: video, HEIC, PDFs, binaries)
 /media/
 /references/
+
+.claude

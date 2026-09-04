@@ -43,19 +43,24 @@ export default function AsciiArt({
     const cw = w / source.cols;
     const ch = h / source.rows;
 
-    ctx.font = `${ch}px ui-monospace, SFMono-Regular, Menlo, monospace`;
-    const advance = ctx.measureText("M").width || ch * 0.6;
-    ctx.font = `${(ch * cw) / advance}px ui-monospace, SFMono-Regular, Menlo, monospace`;
+    const family =
+      getComputedStyle(document.documentElement).getPropertyValue("--font-telugu") ||
+      "sans-serif";
+    ctx.font = `700 ${ch * 0.98}px ${family}, sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
+    ctx.lineWidth = ch * 0.08;
+    ctx.lineJoin = "round";
 
     for (let y = 0; y < source.lines.length; y++) {
       let x = 0;
-      for (const [key, chars] of source.lines[y]) {
-        ctx.fillStyle = source.palette[key] ?? "#888";
-        for (let i = 0; i < chars.length; i++) {
-          const c = chars[i];
-          if (c !== " ") ctx.fillText(c, (x + 0.5) * cw, (y + 0.5) * ch);
+      for (const [key, glyphs] of source.lines[y]) {
+        ctx.fillStyle = ctx.strokeStyle = source.palette[key] ?? "#888";
+        for (const g of glyphs) {
+          if (g !== " ") {
+            ctx.fillText(g, (x + 0.5) * cw, (y + 0.5) * ch, cw * 1.15);
+            ctx.strokeText(g, (x + 0.5) * cw, (y + 0.5) * ch, cw * 1.15);
+          }
           x++;
         }
       }

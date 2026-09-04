@@ -5,7 +5,6 @@ export type Definition = {
   roman: string;
   pos: string;
   senses: string[];
-  source: string;
 };
 
 export default function DefinitionPopup({
@@ -21,7 +20,7 @@ export default function DefinitionPopup({
     <div
       role="note"
       aria-hidden={!open}
-      className="w-[290px] rounded-2xl border-[1.5px] border-ganula-ink bg-ganula-paper p-4 transition-all duration-300 ease-smooth"
+      className="w-[260px] rounded-2xl border border-ganula-ink bg-ganula-paper p-3 transition-all duration-300 ease-smooth"
       style={{
         boxShadow: "5px 5px 0 var(--ganula-ink)",
         opacity: open ? 1 : 0,
@@ -45,14 +44,14 @@ export default function DefinitionPopup({
             onClick={onClose}
             aria-label="Close definition"
             tabIndex={open ? 0 : -1}
-            className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full border-[1.5px] border-ganula-ink text-[13px] leading-none text-ganula-ink"
+            className="flex h-[26px] w-[26px] shrink-0 items-center justify-center rounded-full border border-ganula-ink text-[13px] leading-none text-ganula-ink"
           >
             ✕
           </button>
         )}
       </div>
 
-      <div className="mb-3 border-t-[1.5px] border-dashed border-ganula-rule" />
+      <div className="mb-3 border-t border-dashed border-ganula-rule" />
 
       <p className="m-0 mb-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.06em] text-ganula-muted">
         {def.pos}
@@ -64,9 +63,6 @@ export default function DefinitionPopup({
           </li>
         ))}
       </ol>
-      <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.06em] text-ganula-gold">
-        {def.source}
-      </span>
     </div>
   );
 }

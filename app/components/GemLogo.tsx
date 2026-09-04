@@ -11,13 +11,13 @@ export const GEM_COLORS = ["#d9503a", "#3d5a99", "#4f8a5b"];
 export default function GemLogo({
   size = 34,
   active,
-  color,
+  color = GEM_COLORS[0],
   restFill = "#ffffff",
-  restIcon = "#1b1915",
+  restIcon = "#14120f",
 }: {
   size?: number;
   active: boolean;
-  color: string;
+  color?: string;
   restFill?: string;
   restIcon?: string;
 }) {
@@ -50,7 +50,7 @@ export default function GemLogo({
       cancelAnimationFrame(raf.current);
       raf.current = null;
       el.style.transition = "transform 0.6s ease";
-      el.style.transform = `rotate(${lastRot.current % 360}deg)`;
+      el.style.transform = "rotate(0deg)";
     }
     return () => {
       if (raf.current !== null) cancelAnimationFrame(raf.current);

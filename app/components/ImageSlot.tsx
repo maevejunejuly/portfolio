@@ -34,7 +34,7 @@ export default function ImageSlot({
     <div
       className={`flex h-full w-full items-center justify-center bg-surface p-4 ${className}`}
     >
-      <span className="font-label text-center text-label uppercase leading-relaxed text-fg/45">
+      <span className="text-center text-label uppercase leading-relaxed text-fg/45">
         {placeholder}
       </span>
     </div>

@@ -5,19 +5,18 @@ export default function ProjectLink({
   project,
   className,
   children,
+  ...rest
 }: {
   project: Project;
   className?: string;
   children: React.ReactNode;
-}) {
-  if (!project.href) return <div className={className}>{children}</div>;
-
-  const external = project.href.startsWith("http");
+} & React.HTMLAttributes<HTMLElement>) {
   return (
     <Link
-      href={project.href}
+      href={`/catalog/${project.slug}`}
+      draggable={false}
       className={className}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...rest}
     >
       {children}
     </Link>

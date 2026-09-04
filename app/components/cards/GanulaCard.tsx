@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import GemLogo, { GEM_COLORS } from "../GemLogo";
+import Image from "next/image";
+import GemLogo from "../GemLogo";
 import DefinitionPopup, { type Definition } from "../DefinitionPopup";
 import AsciiArt from "../AsciiArt";
 import { GANULA_ASCII } from "../../lib/ganula-ascii";
@@ -10,30 +11,25 @@ import { GANULA_ASCII } from "../../lib/ganula-ascii";
 const GANULA: Definition = {
   headword: "గనుల",
   roman: "ganula",
-  pos: "Telugu · noun",
+  pos: "noun",
   senses: [
     "of mines; to mine — oblique plural of గని (gani), “a mine”",
-    "a sentence-mining workshop for Telugu learners",
+    "a Telugu immersion learning software",
   ],
-  source: "ganula.app",
 };
-
-let colorIdx = 0;
 
 export default function GanulaCard() {
   const [hover, setHover] = useState(false);
-  const [color, setColor] = useState(GEM_COLORS[0]);
 
-  const onEnter = () => {
-    setColor(GEM_COLORS[colorIdx++ % GEM_COLORS.length]);
-    setHover(true);
-  };
+  const onEnter = () => setHover(true);
 
   return (
     <Link
-      href="/catalog?tag=ganula"
+      href="https://ganula.vercel.app"
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label="Ganula — a Telugu sentence-mining workshop"
-      className="group relative block overflow-hidden rounded-[3px] bg-[#14120f] outline-none"
+      className="group relative block overflow-hidden rounded-card bg-[#14120f] outline-none"
       onMouseEnter={onEnter}
       onMouseLeave={() => setHover(false)}
       onFocus={onEnter}
@@ -41,10 +37,17 @@ export default function GanulaCard() {
     >
       <div className="relative aspect-[4/3] w-full">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <Image
+            src="/media/ganula-background.jpg"
+            alt=""
+            fill
+            sizes="(max-width:1024px) 100vw, 400px"
+            className="object-cover opacity-[.45]"
+          />
           <AsciiArt
             source={GANULA_ASCII}
-            alt="A Telugu wedding photograph rendered as coloured ASCII art"
-            className="absolute inset-0 transition-[filter,opacity] duration-500 ease-smooth"
+            alt="The opening of Nannaya's Ādi Parvam set over a photograph"
+            className="absolute inset-0 brightness-[.85] transition-[filter,opacity] duration-500 ease-smooth"
           />
           <div
             className="absolute inset-0 bg-[#14120f] transition-opacity duration-500"
@@ -63,39 +66,38 @@ export default function GanulaCard() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40" />
         </div>
 
-        <div
-          className="absolute inset-0 flex flex-col items-center justify-center px-5 transition-transform duration-500 ease-smooth"
-          style={{ transform: hover ? "translateY(-14%)" : "translateY(0)" }}
-        >
-          <div className="flex items-center gap-[9px]">
-            <GemLogo size={40} active={hover} color={color} />
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 px-5">
+          <div className="flex items-center gap-[12px]">
+            <GemLogo size={48} active={false} />
             <span className="relative block">
               <span
-                className="block font-bricolage text-[30px] font-bold leading-none tracking-[-0.01em] transition-[opacity,color] duration-200"
-                style={{ opacity: hover ? 0 : 1, color: "#fffdf6" }}
+                className="block font-bricolage text-[36px] font-bold leading-none tracking-[-0.01em] text-ganula-paper transition-opacity duration-200"
+                style={{ opacity: hover ? 0 : 1 }}
               >
                 Ganula
               </span>
               <span
                 lang="te"
                 aria-hidden
-                className="absolute left-0 top-0 block whitespace-nowrap font-telugu text-[30px] font-bold leading-none transition-[opacity,color] duration-200"
-                style={{ opacity: hover ? 1 : 0, color }}
+                className="absolute left-0 top-0 block whitespace-nowrap font-telugu text-[36px] font-bold leading-none text-ganula-paper transition-opacity duration-200"
+                style={{ opacity: hover ? 1 : 0 }}
               >
                 గనుల
               </span>
             </span>
           </div>
 
-          <div className="mt-5">
-            <DefinitionPopup def={GANULA} open={hover} />
+          <div
+            className="grid transition-[grid-template-rows] duration-500 ease-smooth"
+            style={{ gridTemplateRows: hover ? "1fr" : "0fr" }}
+          >
+            <div className="overflow-hidden">
+              <div className="pr-1.5">
+                <DefinitionPopup def={GANULA} open={hover} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="flex items-baseline justify-between gap-3 border-t border-white/10 px-4 py-3 font-label text-label uppercase text-[#efe9dc]">
-        <span className="font-bold">Ganula</span>
-        <span className="opacity-55">2026 — now</span>
       </div>
     </Link>
   );

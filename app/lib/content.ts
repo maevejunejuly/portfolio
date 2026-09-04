@@ -1,14 +1,13 @@
-export type ExperienceItem = { role: string; when: string };
+export type ExperienceItem = { company: string; role: string; when: string };
 
 export const experience: ExperienceItem[] = [
-  { role: "AMD — AI Engineer Intern", when: "2026 —" },
-  { role: "AMD — Software Engineer Intern", when: "2025" },
-  { role: "Source Cooperative — DevOps Engineer", when: "2025" },
-  { role: "MIT CSAIL — ML Researcher, Julia Lab", when: "2024 — 25" },
+  { company: "AMD", role: "AI Engineer Intern", when: "Jun-Aug 2026" },
+  { company: "AMD", role: "Software Engineer Intern", when: "May-Dec 2025" },
+  { company: "Source Cooperative", role: "Software Engineer", when: "Feb-May 2025" },
+  { company: "Julia Lab (MIT CSAIL)", role: "Machine Learning Researcher", when: "Sept 2024 - Jan 2025" },
   {
-    role: "MIT Concrete Sustainability Hub — Data Science Researcher",
-    when: "2024",
-  },
-  { role: "MIT Global Teaching Labs — Teacher, Mexico City", when: "2025" },
-  { role: "MITech Consulting Club — VP + Webmaster", when: "2024 — 25" },
+    company: "MIT Concrete Sustainability Hub",
+    role: "Data Science Researcher",
+    when: "Jan 2024",
+  }
 ];

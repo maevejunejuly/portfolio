@@ -2,23 +2,303 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .kicker {
+    @apply font-body text-label uppercase;
+  }
+
+  /* ---- case study --------------------------------------------------- */
+  /* Everything below is addressable from a project's markdown body: block
+     names map to `.case-<name>`, so a new layout is a rule here and nothing
+     else. Utility classes written only in the database would never reach
+     Tailwind's scanner, which is why these are components, not utilities. */
+
+  .case-body {
+    @apply text-prose;
+  }
+
+  .case-body > p,
+  .case-body > ul,
+  .case-body > ol,
+  .case-body > blockquote {
+    @apply mt-5;
+  }
+
+  .case-body h2 {
+    @apply mt-20 scroll-mt-24 font-bricolage text-section font-bold md:mt-28;
+  }
+
+  .case-body h3 {
+    @apply mt-12 scroll-mt-24 text-sub font-bold;
+  }
+
+  .case-body h2 + h3 {
+    @apply mt-6;
+  }
+
+  .case-body h4 {
+    @apply mb-2 kicker opacity-45;
+  }
+
+  .case-body ul {
+    @apply list-disc pl-5;
+  }
+
+  .case-body ol {
+    @apply list-decimal pl-5;
+  }
+
+  .case-body a {
+    @apply underline underline-offset-4;
+  }
+
+  .case-body em {
+    @apply italic;
+  }
+
+  .case-fact a {
+    @apply underline underline-offset-4;
+  }
+
+  .case-media {
+    @apply my-10 w-full;
+  }
+
+  .case-media img,
+  .case-media video {
+    @apply h-auto w-full rounded-card border border-line;
+  }
+
+  .case-caption {
+    @apply mt-3 block text-label uppercase text-fg opacity-45;
+  }
+
+  .media-slot {
+    @apply flex h-full min-h-[180px] items-center justify-center rounded-card border border-dashed border-line bg-surface p-8 text-center text-label uppercase leading-relaxed text-fg opacity-45;
+  }
+
+  /* :::split — media beside text. Media first in the doc puts it on the left. */
+  .case-split {
+    @apply my-10 grid gap-6 md:grid-cols-2 md:items-center;
+  }
+
+  /* :::grid — two or more pieces side by side. {cols=3} widens it. */
+  .case-grid {
+    @apply my-10 grid items-start gap-4 sm:grid-cols-2;
+  }
+
+  .case-grid-3 {
+    @apply md:grid-cols-3;
+  }
+
+  .case-grid-4 {
+    @apply md:grid-cols-4;
+  }
+
+  /* :::cards — columnar text blocks, no media. */
+  .case-cards {
+    @apply my-10 grid items-start gap-4 sm:grid-cols-2;
+  }
+
+  .case-cards-3 {
+    @apply md:grid-cols-3;
+  }
+
+  /* :::card{label="…"} — one box, inside a grid or on its own. */
+  .case-card {
+    @apply rounded-card border border-line bg-surface p-5;
+  }
+
+  .case-card-label {
+    @apply kicker mb-3 opacity-45;
+  }
+
+  .case-split > *,
+  .case-grid > *,
+  .case-cards > * {
+    @apply my-0;
+  }
+
+  .case-card > :first-child,
+  .case-split > :first-child,
+  .case-grid > :first-child {
+    @apply mt-0;
+  }
+
+  /* :::steps — a numbered pipeline. <ol><li><b>name</b><span>note</span> */
+  .case-steps {
+    @apply my-10;
+  }
+
+  .case-steps ol {
+    @apply list-decimal divide-y divide-line rounded-card border border-line bg-surface pl-0;
+    list-style-position: inside;
+  }
+
+  .case-steps li {
+    @apply p-4 marker:kicker marker:opacity-40;
+  }
+
+  .case-steps li > strong {
+    @apply font-bold;
+  }
+
+  .case-steps li > span,
+  .case-steps li > em {
+    @apply mt-1 block not-italic text-meta opacity-65;
+  }
+
+  /* :::anatomy — a labelled field list. <dl><div><dt/><dd/></div></dl> */
+  .case-anatomy dl {
+    @apply space-y-2.5;
+  }
+
+  .case-anatomy dl > div {
+    @apply flex gap-3 text-meta;
+  }
+
+  .case-anatomy dt {
+    @apply w-24 shrink-0 opacity-45;
+  }
+
+  .case-anatomy dd {
+    @apply flex-1;
+  }
+
+  /* :::morphemes — a word broken into labelled parts. */
+  .case-morphemes {
+    @apply my-10 rounded-card border border-line bg-surface p-5 text-center;
+  }
+
+  .case-morphemes p:first-of-type {
+    @apply text-[26px] leading-tight;
+  }
+
+  .case-morphemes p:first-of-type strong {
+    @apply font-normal;
+  }
+
+  .case-morphemes p:last-of-type {
+    @apply mt-4 flex flex-wrap items-center justify-center gap-2;
+  }
+
+  .case-morphemes p:last-of-type > span {
+    @apply rounded-full border border-line px-3 py-1;
+  }
+
+  .case-morphemes p:last-of-type em {
+    @apply ml-2 text-label not-italic opacity-55;
+  }
+
+  /* :::bars — a sentence as word-shaped bars; <mark> is an unknown word. */
+  .case-bars p {
+    @apply mb-4 flex flex-wrap items-end gap-1.5;
+  }
+
+  .case-bars p > * {
+    @apply h-2.5 w-6 rounded-full bg-fg text-transparent opacity-25;
+  }
+
+  .case-bars p > :nth-child(3n) {
+    @apply w-9;
+  }
+
+  .case-bars p > :nth-child(4n) {
+    @apply w-4;
+  }
+
+  .case-bars p > mark {
+    @apply bg-status-unknown opacity-100;
+  }
+
+  .filter-opt {
+    @apply text-left transition-opacity duration-150 opacity-55 hover:opacity-100;
+  }
+
+  .filter-opt.font-bold {
+    @apply opacity-100;
+  }
+
+  .chip {
+    @apply kicker rounded-full border px-3 py-1 transition-colors duration-150;
+  }
+
+  .overlay-invert {
+    @apply text-overlay-ink;
+    mix-blend-mode: difference;
+  }
+
+  .chrome {
+    @apply pointer-events-none;
+  }
+
+  .chrome a,
+  .chrome button {
+    @apply pointer-events-auto;
+  }
+
+  .glass-chip {
+    @apply relative rounded-full;
+    background: linear-gradient(-75deg, #ffffff08, #ffffff1f, #ffffff08);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow:
+      inset 0 0.125em 0.125em #00000008,
+      inset 0 -0.125em 0.125em #ffffff40,
+      inset 0 0 0.1em 0.25em #ffffff1a,
+      0 0.25em 0.5em -0.125em #00000014;
+  }
+
+  .glass-chip::after {
+    content: "";
+    @apply pointer-events-none absolute rounded-full;
+    inset: -1px;
+    padding: 1px;
+    background:
+      conic-gradient(
+        from -75deg at 50% 50%,
+        #00000033,
+        #0000 5% 40%,
+        #00000033 50%,
+        #0000 60% 95%,
+        #00000033
+      ),
+      linear-gradient(180deg, #ffffff40, #ffffff40);
+    -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+    mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+    -webkit-mask-clip: content-box, border-box;
+    mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .card-box {
+    @apply rounded-card bg-white p-3;
+    box-shadow: 0 1px 2px rgba(20, 19, 15, 0.05), 0 10px 30px rgba(20, 19, 15, 0.06);
+  }
+
+  .linkish {
+    @apply relative inline-block after:absolute after:bottom-[0.08em] after:left-0 after:h-[2px] after:w-full after:origin-right after:scale-x-0 after:bg-fg after:transition-transform after:duration-300 after:ease-smooth hover:after:origin-left hover:after:scale-x-100 focus-visible:after:origin-left focus-visible:after:scale-x-100;
+  }
+}
+
 :root {
-  --bg: #fdfdfc;
+  --bg: #F0F0F0;
   --fg: #14130f;
   --surface: #ece9e2;
   --line: rgba(20, 19, 15, 0.16);
-  --line2: rgba(20, 19, 15, 0.18);
   --inv-bg: #14130f;
-  --inv-fg: #fdfdfc;
+  --inv-fg: #F0F0F0;
+  --overlay: #B2B2B2;
+  --overlay-ink: #6E6E6E;
 
-  /* --font-display / -body / -label / -hand / -telugu / -mono are injected on
-     <html> by next/font in app/layout.tsx. */
+  --status-unknown: #b8422c;
+  --status-tracking: #a1761c;
 
   --ganula-ink: #221e17;
   --ganula-paper: #fffdf6;
   --ganula-muted: #8a8172;
   --ganula-rule: #c3b89f;
-  --ganula-gold: #dfa02a;
 }
 
 html,
@@ -30,7 +310,10 @@ body {
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-body), ui-monospace, monospace;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
