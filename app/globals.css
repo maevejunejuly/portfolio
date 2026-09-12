@@ -52,6 +52,21 @@
     @apply underline underline-offset-4;
   }
 
+  .case-body code {
+    @apply border border-line bg-surface px-1.5 py-0.5 font-mono text-[0.88em];
+    box-decoration-break: clone;
+    overflow-wrap: anywhere;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .case-body pre {
+    @apply my-8 overflow-x-auto border border-line bg-surface p-5 text-[14px] leading-relaxed;
+  }
+
+  .case-body pre code {
+    @apply border-0 bg-transparent p-0 text-[1em];
+  }
+
   .case-body em {
     @apply italic;
   }
@@ -67,6 +82,15 @@
   .case-media img,
   .case-media video {
     @apply h-auto w-full rounded-card border border-line;
+  }
+
+  .case-hero-portrait {
+    @apply mx-auto max-w-[480px];
+  }
+
+  [data-project="minesweeper-psoc"] .case-media img,
+  [data-project="minesweeper-psoc"] .case-media video {
+    @apply rounded-none;
   }
 
   .case-caption {
@@ -93,6 +117,93 @@
 
   .case-grid-4 {
     @apply md:grid-cols-4;
+  }
+
+  /* Compact technical screenshots stay legible without dominating the page. */
+  .case-compact {
+    @apply mx-auto my-10 w-full max-w-[520px];
+  }
+
+  .case-compact > .case-media,
+  .case-screen > .case-media {
+    @apply my-0;
+  }
+
+  /* Portrait hardware photos use the display's native shape and crop only
+     the empty bars around the source image. */
+  .case-screen {
+    @apply mx-auto my-10 w-full max-w-[390px];
+  }
+
+  .case-screen .case-media img {
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+  }
+
+  /* Screen sequences scroll at a readable size on narrow viewports, then
+     settle into equal-height columns when the container has enough room. */
+  .case-screen-grid,
+  .case-square-grid {
+    @apply my-10 grid gap-4 overflow-x-auto pb-2;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 72%);
+    scrollbar-width: none;
+    scroll-snap-type: inline proximity;
+  }
+
+  .case-screen-grid::-webkit-scrollbar,
+  .case-square-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .case-screen-grid > *,
+  .case-square-grid > * {
+    @apply my-0;
+    scroll-snap-align: start;
+  }
+
+  .case-screen-grid .case-media img {
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+  }
+
+  .case-square-grid .case-media img {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  @media (min-width: 640px) {
+    .case-screen-grid,
+    .case-square-grid {
+      grid-auto-flow: row;
+      grid-auto-columns: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      overflow: visible;
+      padding-bottom: 0;
+    }
+
+    .case-screen-grid-3,
+    .case-square-grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* Equations are separated from prose without introducing a heavy card. */
+  .case-math {
+    @apply my-8 overflow-x-auto border-y border-line py-5 text-center;
+    scrollbar-width: none;
+  }
+
+  .case-math::-webkit-scrollbar {
+    display: none;
+  }
+
+  .case-math > :first-child {
+    @apply mt-0;
+  }
+
+  .case-math p {
+    @apply min-w-max font-mono text-[clamp(15px,2.2vw,19px)] leading-relaxed;
   }
 
   /* :::cards — columnar text blocks, no media. */

@@ -14,7 +14,10 @@ export default function CaseStudy({ project }: { project: ProjectPage }) {
   );
 
   return (
-    <main className="mx-auto flex min-h-svh max-w-shell flex-col px-4 pb-10 sm:px-7">
+    <main
+      className="mx-auto flex min-h-svh max-w-shell flex-col px-4 pb-10 sm:px-7"
+      data-project={project.slug}
+    >
       <div className="relative py-6">
         <aside className="absolute left-0 top-6 hidden h-full md:block">
           <div className="sticky top-24 flex flex-col items-start gap-6">
@@ -35,7 +38,7 @@ export default function CaseStudy({ project }: { project: ProjectPage }) {
           </h1>
 
           {project.cover && (
-            <figure className="case-media">
+            <figure className={`case-media case-hero case-hero-${project.aspect}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={project.cover} alt={project.title} />
             </figure>
