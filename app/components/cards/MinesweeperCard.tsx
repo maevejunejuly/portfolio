@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import {
   applySteps,
   buildWinScript,
@@ -201,14 +202,13 @@ export default function MinesweeperCard() {
   }, [game, seconds, ready, script.steps, step]);
 
   return (
-    <div
-      className="group relative"
+    <Link
+      href="/catalog/minesweeper-psoc"
+      className="group relative block outline-none"
       onMouseEnter={() => setPlaying(true)}
       onMouseLeave={() => setPlaying(false)}
       onFocus={() => setPlaying(true)}
       onBlur={() => setPlaying(false)}
-      tabIndex={0}
-      role="img"
       aria-label={`Minesweeper running on a PSoC 5LP development board. ${
         won ? "Board solved." : "Game in progress."
       }`}
@@ -275,6 +275,6 @@ export default function MinesweeperCard() {
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

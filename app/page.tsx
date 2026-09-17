@@ -1,6 +1,6 @@
 import Link from "next/link";
 import MinesweeperCard from "./components/cards/MinesweeperCard";
-import GanulaCard from "./components/cards/GanulaCard";
+import SwaraluCard from "./components/cards/SwaraluCard";
 import CaravanCard from "./components/cards/CaravanCard";
 import BlackVampireCard from "./components/cards/BlackVampireCard";
 import Footer from "./components/Footer";
@@ -44,13 +44,13 @@ export default function Home() {
                 I&apos;m currently searching for new grad SWE jobs in NYC and
                 building{" "}
                 <a
-                  href="https://ganula.vercel.app"
+                  href="https://swaralu.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="glass-chip ml-0.5 inline-flex rotate-2 items-center gap-1.5 px-2.5 py-1 align-middle font-medium text-fg transition-transform duration-300 ease-smooth hover:rotate-0"
                 >
                   <GemLogo size={18} active={false} color="#FFCC66" restFill="#14120f" restIcon="#FFCC66" />
-                  Ganula
+                  Swaralu
                 </a>
               </p>
 
@@ -67,7 +67,7 @@ export default function Home() {
 
         <div className="flex flex-col gap-6">
           <div data-push="1">
-            <GanulaCard />
+            <SwaraluCard />
           </div>
           <div data-push="1">
             <BlackVampireCard />

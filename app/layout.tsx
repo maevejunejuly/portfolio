@@ -7,6 +7,7 @@ import {
   DM_Mono,
   Bricolage_Grotesque,
   Roboto,
+  STIX_Two_Text,
 } from "next/font/google";
 import "./globals.css";
 import Wordmark from "./components/Wordmark";
@@ -54,6 +55,13 @@ const roboto = Roboto({
   display: "swap",
 });
 
+const math = STIX_Two_Text({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-math",
+  display: "swap",
+});
+
 const mono = DM_Mono({
   weight: ["400", "500"],
   subsets: ["latin"],
@@ -71,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${scoutie.variable} ${bricolage.variable} ${telugu.variable} ${mono.variable} ${roboto.variable}`}
+      className={`${display.variable} ${scoutie.variable} ${bricolage.variable} ${telugu.variable} ${mono.variable} ${roboto.variable} ${math.variable}`}
     >
       <body className="font-body">
         <div className="isolate">

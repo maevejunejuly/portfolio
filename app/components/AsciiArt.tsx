@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import type { AsciiRun } from "../lib/ganula-ascii";
+import type { AsciiRun } from "../lib/swaralu-ascii";
 
 export type AsciiSource = {
   cols: number;

@@ -81,7 +81,7 @@
 
   .case-media img,
   .case-media video {
-    @apply h-auto w-full rounded-card border border-line;
+    @apply mx-auto h-auto w-auto max-w-full rounded-card border border-line;
   }
 
   .case-hero-portrait {
@@ -108,7 +108,15 @@
 
   /* :::grid — two or more pieces side by side. {cols=3} widens it. */
   .case-grid {
-    @apply my-10 grid items-start gap-4 sm:grid-cols-2;
+    @apply my-10 grid gap-4 sm:grid-cols-2;
+  }
+
+  .case-grid > .case-media {
+    @apply flex h-full flex-col;
+  }
+
+  .case-grid > .case-media > img {
+    @apply my-auto;
   }
 
   .case-grid-3 {
@@ -190,7 +198,7 @@
 
   /* Equations are separated from prose without introducing a heavy card. */
   .case-math {
-    @apply my-8 overflow-x-auto border-y border-line py-5 text-center;
+    @apply my-8 overflow-x-auto text-center;
     scrollbar-width: none;
   }
 
@@ -203,7 +211,7 @@
   }
 
   .case-math p {
-    @apply min-w-max font-mono text-[clamp(15px,2.2vw,19px)] leading-relaxed;
+    @apply min-w-max font-math text-[1.15em] leading-relaxed;
   }
 
   /* :::cards — columnar text blocks, no media. */
@@ -406,10 +414,10 @@
   --status-unknown: #b8422c;
   --status-tracking: #a1761c;
 
-  --ganula-ink: #221e17;
-  --ganula-paper: #fffdf6;
-  --ganula-muted: #8a8172;
-  --ganula-rule: #c3b89f;
+  --swaralu-ink: #221e17;
+  --swaralu-paper: #fffdf6;
+  --swaralu-muted: #8a8172;
+  --swaralu-rule: #c3b89f;
 }
 
 html,
@@ -438,7 +446,7 @@ a {
   color: #14130f;
 }
 
-@keyframes ganula-sweep {
+@keyframes swaralu-sweep {
   from { background-position: 200% 0; }
   to   { background-position: -60% 0; }
 }

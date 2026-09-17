@@ -75,9 +75,7 @@ export default function CaravanCard() {
       onBlur={() => setOpen(false)}
     >
       <Link
-        href="https://www.figma.com/proto/L5R40xMulApXN7y8Ces77v/Caravan--BU-Forge-Catalyst-Design-a-thon?node-id=24-952"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/catalog/caravan"
         className="block overflow-hidden rounded-card bg-caravan-cream outline-none"
       >
         <div className="flex items-center gap-2 bg-caravan-olive px-3 py-2.5 sm:gap-3 sm:px-4">

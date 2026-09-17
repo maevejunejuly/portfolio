@@ -45,7 +45,7 @@ export default function CaseStudy({ project }: { project: ProjectPage }) {
           )}
 
           {project.overview.length > 0 && (
-            <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+            <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 sm:flex sm:justify-between sm:gap-x-10">
               {project.overview.map(({ label, value }) => (
                 <div key={label}>
                   <dt className="kicker opacity-55">{label}</dt>
@@ -59,7 +59,7 @@ export default function CaseStudy({ project }: { project: ProjectPage }) {
           )}
 
           <div
-            className="case-body"
+            className="case-body mt-10"
             dangerouslySetInnerHTML={{ __html: html }}
           />
         </div>

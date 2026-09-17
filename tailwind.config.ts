@@ -20,11 +20,11 @@ export default {
           unknown: "var(--status-unknown)",
           tracking: "var(--status-tracking)",
         },
-        ganula: {
-          ink: "var(--ganula-ink)",
-          paper: "var(--ganula-paper)",
-          muted: "var(--ganula-muted)",
-          rule: "var(--ganula-rule)",
+        swaralu: {
+          ink: "var(--swaralu-ink)",
+          paper: "var(--swaralu-paper)",
+          muted: "var(--swaralu-muted)",
+          rule: "var(--swaralu-rule)",
         },
         yt: {
           text: "#0f0f0f",
@@ -47,6 +47,7 @@ export default {
         bricolage: ["var(--font-bricolage)", "sans-serif"],
         telugu: ["var(--font-telugu)", "sans-serif"],
         mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        math: ["var(--font-math)", "serif"],
         roboto: ["var(--font-roboto)", "Roboto", "Arial", "sans-serif"],
       },
       fontSize: {
