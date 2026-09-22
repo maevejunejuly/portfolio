@@ -65,7 +65,7 @@ export default function About() {
         </div>
 
         <div className="relative aspect-[3/4] w-full max-w-[244px]">
-          <ImageSlot placeholder="Portrait" className="h-full w-full" />
+          <ImageSlot src="/media/portrait.webp" placeholder="Portrait" className="h-full w-full grayscale" />
         </div>
       </div>
 
